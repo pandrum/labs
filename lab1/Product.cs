@@ -7,6 +7,7 @@
         public string Name
         {
             get { return name; }    //read
+
             set                     //write
             {
                 if (!string.IsNullOrEmpty(value))
@@ -14,7 +15,7 @@
                     name = value;
                 } else
                 {
-                    System.Console.WriteLine("Name cannot be empty or null!");
+                    Console.WriteLine("Name cannot be empty or null!");
                 }
             }
         }
