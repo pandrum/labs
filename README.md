@@ -1,2 +1,2 @@
-# labs Uppsala Uni
+# Uppsala Uni
 🧑‍💻
