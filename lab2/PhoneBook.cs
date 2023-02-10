@@ -2,13 +2,13 @@
 {
     internal class PhoneBook
     {
-        public List<Person> Persons { get; set; } = new List<Person>();
+        public List<Person> Members { get; set; } = new List<Person>();
 
         public void AddEntry(Person person, Phone phone)
         {
             try
             {
-                foreach (Person p in Persons)
+                foreach (Person p in Members)
                 {
                     if (p.Name.Equals(person.Name))
                     {
@@ -16,7 +16,7 @@
                     }
                 }
                 person.Phonenumbers.Add(phone);
-                Persons.Add(person);
+                Members.Add(person);
             }
             catch (Exception)
             {
@@ -26,7 +26,7 @@
 
         public void AddEntry(Person person)
         {
-            Persons.Add(person);
+            Members.Add(person);
         }
 
         public void FindPhones(Person person)
@@ -40,7 +40,8 @@
                     {
                         Console.WriteLine(phone.Number);
                     }
-                } else
+                }
+                else
                 {
                     Console.WriteLine($"{person.Name}'s phone numbers is: {person.Phonenumbers.First().Number}");
                 }
@@ -55,7 +56,7 @@
         {
             try
             {
-                foreach (var p in Persons)
+                foreach (var p in Members)
                 {
                     if (p.Name.Equals(person.Name))
                     {
@@ -65,7 +66,7 @@
             }
             catch (Exception)
             {
-                Console.WriteLine("Unknown name.");
+                Console.WriteLine("Unknown name or number.");
             }
         }
     }

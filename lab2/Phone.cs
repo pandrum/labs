@@ -6,7 +6,7 @@
 
         public Phone(string number)
         {
-            Number=number;
+            Number = number;
         }
     }
 }
