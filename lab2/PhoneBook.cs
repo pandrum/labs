@@ -8,13 +8,13 @@
         {
             try
             {
-                foreach (Person p in Members)
-                {
-                    if (p.Name.Equals(person.Name))
-                    {
-                        p.Phonenumbers.Add(phone);
-                    }
-                }
+                // foreach (Person p in Members)
+                // {
+                //     if (p.Name.Equals(person.Name))
+                //     {
+                //         p.Phonenumbers.Add(phone);
+                //     }
+                // }
                 person.Phonenumbers.Add(phone);
                 Members.Add(person);
             }
@@ -22,11 +22,6 @@
             {
                 Console.WriteLine("Unknown name.");
             }
-        }
-
-        public void AddEntry(Person person)
-        {
-            Members.Add(person);
         }
 
         public void FindPhones(Person person)
@@ -56,7 +51,7 @@
         {
             try
             {
-                foreach (var p in Members)
+                foreach (var p in Persons)
                 {
                     if (p.Name.Equals(person.Name))
                     {
@@ -66,7 +61,7 @@
             }
             catch (Exception)
             {
-                Console.WriteLine("Unknown name or number.");
+                Console.WriteLine("Unknown name.");
             }
         }
     }
