@@ -8,60 +8,56 @@
         {
             try
             {
-                // foreach (Person p in Members)
-                // {
-                //     if (p.Name.Equals(person.Name))
-                //     {
-                //         p.Phonenumbers.Add(phone);
-                //     }
-                // }
-                person.Phonenumbers.Add(phone);
+                person.Phone.Add(phone);
                 Members.Add(person);
             }
             catch (Exception)
             {
-                Console.WriteLine("Unknown name.");
+                throw new NameNotFoundException("Can not add user.");
             }
         }
 
-        public void FindPhones(Person person)
+        public List<Phone> FindPhones(string name)
         {
             try
             {
-                if (person.Phonenumbers.Count > 1)
+                var phones = new List<Phone>();
+
+                foreach (var p in Members)
                 {
-                    Console.WriteLine($"{person.Name}'s phone numbers are: ");
-                    foreach (var phone in person.Phonenumbers)
+                    if (name.Equals(p.Name))
                     {
-                        Console.WriteLine(phone.Number);
+                        phones = p.Phone;
                     }
                 }
-                else
+                return phones;
+            }
+            catch (Exception)
+            {
+                throw new NameNotFoundException("Unknown user.");
+            }
+        }
+
+        public void RemoveEntry(string name, Phone phone)
+        {
+            try
+            {
+                bool match = false;
+                foreach (var p in Members)
                 {
-                    Console.WriteLine($"{person.Name}'s phone numbers is: {person.Phonenumbers.First().Number}");
+                    if (name.Equals(p.Name))
+                    {
+                        p.Phone.Remove(phone);
+                    }
+                }
+                if (!match)
+                {
+                    throw new NameNotFoundException();
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine("Unknown name.");
-            }
-        }
-
-        public void RemoveEntry(Person person, Phone phone)
-        {
-            try
-            {
-                foreach (var p in Persons)
-                {
-                    if (p.Name.Equals(person.Name))
-                    {
-                        p.Phonenumbers.Remove(phone);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Unknown name.");
+                Console.WriteLine("Unknown user.");
             }
         }
     }
