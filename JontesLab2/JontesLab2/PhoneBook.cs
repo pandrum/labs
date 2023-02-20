@@ -50,7 +50,7 @@ namespace JontesLab2
             {
                 Random random = new Random();
                 Phone randomPhone = new Phone(random.Next(10000000, 20000000)); //Slumpar fram ett nummer
-                Phone randomPhone2 = new Phone(0738663666); //Slumpar fram ett nummer
+                Phone randomPhone2 = new Phone(random.Next(20000000, 30000000)); //Slumpar fram ett nummer
 
                 List<Phone> phoneList = new List<Phone>(); //
                 phoneList.Add(randomPhone);

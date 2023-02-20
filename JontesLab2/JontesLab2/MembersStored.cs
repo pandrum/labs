@@ -16,7 +16,10 @@ namespace JontesLab2
         public void FillPersons()
         {
             Person person1 = new Person("Adam");
+            Person person2 = new Person("Eva");
+
             Persons.Add(person1);
+            Persons.Add(person2);
 
         }
     }
