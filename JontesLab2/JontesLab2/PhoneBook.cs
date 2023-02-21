@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JontesLab2
 {
@@ -51,22 +52,68 @@ namespace JontesLab2
                 Random random = new Random();
                 Phone randomPhone = new Phone(random.Next(10000000, 20000000)); //Slumpar fram ett nummer
                 Phone randomPhone2 = new Phone(random.Next(20000000, 30000000)); //Slumpar fram ett nummer
-
+                
                 List<Phone> phoneList = new List<Phone>(); //
                 phoneList.Add(randomPhone);
                 phoneList.Add(randomPhone2);
-                AddEntry(person, phoneList);
+                phoneList.Add(randomPhone2);
+
+                //AddEntry(person, phoneList);
+                AddEntry(person, randomPhone);
+                AddEntry(person, randomPhone2);
+                AddEntry(person, randomPhone2);
+
 
 
             }
         }
 
-
-        public void AddEntry(Person name, List<Phone> numbers)
+        public void AddEntry(Person name, Phone number)
         {
-            phonebook.Add(name, numbers);
-        }
+            bool registered = false;
+            bool duplicate = false;
+            //kolla om personen finns, då addera till den personens lista
+            //annars skapa ny lista
 
+            //check innan om numnet redan finns
+
+
+            foreach (KeyValuePair<Person, List<Phone>> kvp in phonebook) //vi går igenom våra namn 
+            {
+                foreach (List<Phone> list in phonebook.Values) //för varje namn, tillhörande nummer
+                {
+                    
+                    if (list.Contains(number))
+                    {
+                        duplicate = true;
+                    }
+
+                    
+                }
+                if (duplicate) //duplicates ska ej läggas till
+                {
+                    break;
+                }
+
+                if (kvp.Key.Name == name.Name)
+                {
+                    kvp.Value.Add(number); //personen finns registrerad, vi adderar till personens redan existerande lista
+                    registered= true;
+                }
+                
+            }
+            if(registered == false && duplicate == false) //personen är ny vi skapar en lista tillhörande och lägger i vårat första nummer
+            {
+                List<Phone> phoneList = new List<Phone>(); 
+                phoneList.Add(number);
+                phonebook.Add(name, phoneList);
+            }
+            if(duplicate)
+            {
+                Console.WriteLine("The number:" + number.Number +  ", is already registered");
+            }
+        }
+        
 
         public void RemoveEntry(Phone number) //ta bort numret och om personen endast har ett telefonnummer ta bort personen från dictionary
         {

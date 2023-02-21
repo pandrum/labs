@@ -1,7 +1,6 @@
 ﻿﻿// See https://aka.ms/new-console-template for more information
 using JontesLab2;
 
-Console.WriteLine("Hello, World!");
 
 List<Person> allNames = new List<Person>();
 //List<Person> retrievedName = new List<Person>(); //behövs inte då vi inte hämtar namn
