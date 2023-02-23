@@ -77,41 +77,49 @@ namespace JontesLab2
 
             //check innan om numnet redan finns
 
-
-            foreach (KeyValuePair<Person, List<Phone>> kvp in phonebook) //vi går igenom våra namn 
+            if(membersList.Contains(name)) //vi gör en check för att explicit ´checka att personen vi adderar finns i members listan
             {
-                foreach (List<Phone> list in phonebook.Values) //för varje namn, tillhörande nummer
+
+                foreach (KeyValuePair<Person, List<Phone>> kvp in phonebook) //vi går igenom våra namn 
                 {
-                    
-                    if (list.Contains(number))
+                    foreach (List<Phone> list in phonebook.Values) //för varje namn, tillhörande nummer
                     {
-                        duplicate = true;
+
+                        if (list.Contains(number))
+                        {
+                            duplicate = true;
+                        }
+
+
+                    }
+                    if (duplicate) //duplicates ska ej läggas till
+                    {
+                        break;
                     }
 
-                    
-                }
-                if (duplicate) //duplicates ska ej läggas till
-                {
-                    break;
-                }
+                    if (kvp.Key.Name == name.Name)
+                    {
+                        kvp.Value.Add(number); //personen finns registrerad, vi adderar till personens redan existerande lista
+                        registered = true;
+                    }
 
-                if (kvp.Key.Name == name.Name)
-                {
-                    kvp.Value.Add(number); //personen finns registrerad, vi adderar till personens redan existerande lista
-                    registered= true;
                 }
-                
+                if (registered == false && duplicate == false) //personen är ny vi skapar en lista tillhörande och lägger i vårat första nummer
+                {
+                    List<Phone> phoneList = new List<Phone>();
+                    phoneList.Add(number);
+                    phonebook.Add(name, phoneList);
+                }
+                if (duplicate)
+                {
+                    Console.WriteLine("The number:" + number.Number + ", is already registered");
+                }
             }
-            if(registered == false && duplicate == false) //personen är ny vi skapar en lista tillhörande och lägger i vårat första nummer
+            else
             {
-                List<Phone> phoneList = new List<Phone>(); 
-                phoneList.Add(number);
-                phonebook.Add(name, phoneList);
+                Console.WriteLine("The person you are trying to register is not a part of members");
             }
-            if(duplicate)
-            {
-                Console.WriteLine("The number:" + number.Number +  ", is already registered");
-            }
+
         }
         
 
