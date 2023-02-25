@@ -82,10 +82,8 @@
                     }
                     if (registered == false && duplicate == false) //personen är ny vi skapar en lista tillhörande och lägger i vårat första nummer
                     {
-                        List<Phone> phoneList = new List<Phone>
-                        {
-                            number
-                        };
+                        List<Phone> phoneList = new List<Phone>{number};
+
                         phonebook.Add(name, phoneList);
                     }
                     if (duplicate)
