@@ -11,9 +11,8 @@
                 bool match = false;
                 foreach (Person member in Members)
                 {
-                    e))
+                    if (person.Name.Equals(member.Name))
                     {
-                        Console.WriteLine("maio");
                         match= true;
                     }
                 }

@@ -12,9 +12,8 @@ ph3 = new Phone("070123456");
 PhoneBook phonebook = new PhoneBook();
 
 phonebook.AddEntry(p1, ph1);
-phonebook.AddEntry(p1, ph1);
-//phonebook.AddEntry(p2, ph2);
-//phonebook.AddEntry(p2, ph3);
+phonebook.AddEntry(p2, ph2);
+phonebook.AddEntry(p2, ph3);
 
 var numbers = phonebook.FindPhones("do not exist");
 foreach (var item in numbers)
