@@ -14,7 +14,7 @@
             Console.WriteLine("<lines>");
 
             foreach (var item in invoice.InvoiceList.Products)
-            {
+    {
                 Console.WriteLine($"\t<line qty={item.Quantity} productTitle={item.Name} unitPrice={item.Price}$ total={item.Total}$/>");
             }
             Console.WriteLine("</lines>");
