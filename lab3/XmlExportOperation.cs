@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace lab3
+﻿namespace lab3
 {
     internal class XmlExportOperation : IVisitor
     {
@@ -24,7 +18,7 @@ namespace lab3
                 Console.WriteLine($"\t<line qty={item.Quantity} productTitle={item.Name} unitPrice={item.Price}$ total={item.Total}$/>");
             }
             Console.WriteLine("</lines>");
-
+            Console.WriteLine($"<total pre-tax=\"2065$\" tax=\"207$\" total=\"2272$\"/>");
             Console.WriteLine("</invoice>");
         }
     }

@@ -16,4 +16,4 @@ var visitor = new ConsoleStringOperation();
 var visito2 = new XmlExportOperation();
 
 invoice.Accept(visitor);
-//invoice.Accept(visito2);
+invoice.Accept(visito2);
