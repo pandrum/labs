@@ -8,34 +8,53 @@
         {
             try
             {
-                person.Phone.Add(phone);
-                Members.Add(person);
+                bool match = false;
+                foreach (Person member in Members)
+                {
+                    if (person.Name.Equals(member.Name))
+                    {
+                        match= true;
+                    }
+                }
+                if (match)
+                {
+                    throw new PhoneBookException();
+                } else
+                {
+                    person.Phone.Add(phone);
+                    Members.Add(person);
+                }
             }
-            catch (Exception)
+            catch (PhoneBookException e)
             {
-                throw new NameNotFoundException("Can not add user.");
+                Console.WriteLine("Duplicate. User is already in database. " + e.Message);
             }
         }
 
         public List<Phone> FindPhones(string name)
         {
+            List<Phone> phones = new List<Phone>();
             try
             {
-                var phones = new List<Phone>();
-
-                foreach (var p in Members)
+                bool match = false;
+                foreach (var members in Members)
                 {
-                    if (name.Equals(p.Name))
+                    if (name.Equals(members.Name))
                     {
-                        phones = p.Phone;
+                        match= true;
+                        phones = members.Phone;
                     }
                 }
-                return phones;
+                if (!match)
+                {
+                    throw new PhoneBookException();
+                }
             }
-            catch (Exception)
+            catch (PhoneBookException e)
             {
-                throw new NameNotFoundException("Unknown user.");
+                Console.WriteLine("Cannot find entry. Unknown name. " + e.Message);
             }
+            return phones;
         }
 
         public void RemoveEntry(string name, Phone phone)
@@ -47,17 +66,18 @@
                 {
                     if (name.Equals(p.Name))
                     {
+                        match= true;
                         p.Phone.Remove(phone);
                     }
                 }
                 if (!match)
                 {
-                    throw new NameNotFoundException();
+                    throw new PhoneBookException();
                 }
             }
-            catch (Exception)
+            catch (PhoneBookException e)
             {
-                Console.WriteLine("Unknown user.");
+                Console.WriteLine("Cannot remove entry. Unknown user. " + e.Message);
             }
         }
     }
