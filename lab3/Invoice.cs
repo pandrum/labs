@@ -10,16 +10,22 @@
 
         public Invoice(InvoiceList invoiceList, int customerNumber, int invoiceNumber)
         {
-            InvoiceList= invoiceList;
-            CustomerNumber= customerNumber;
-            InvoiceNumber= invoiceNumber;
-            InvoiceDate= DateTime.Now;
+            InvoiceList = invoiceList;
+            CustomerNumber = customerNumber;
+            InvoiceNumber = invoiceNumber;
+            InvoiceDate = DateTime.Now;
             PaymentBy = InvoiceDate.AddMonths(1);
         }
 
         public void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
+
+
+
+
+
+
         }
     }
 }
