@@ -25,6 +25,8 @@ p.Accept(visitor);
 p2.Accept(visitor);
 p3.Accept(visitor);
 
+Console.WriteLine();
+
 //visiting the invoice types from XmlExportVisitor
 invoice.Accept(visitor2);
 invoiceLines.ForEach(invoiceLine => invoiceLine.Accept(visitor2));
