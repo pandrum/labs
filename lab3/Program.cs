@@ -1,19 +1,33 @@
 ﻿using lab3;
 
-var product = new Product("Mythical Man-Month", 45);
-var product2 = new Product("Ream of paper (500)", 5, 4);
-var product3 = new Product("Standart Fruit Laptop", 2000);
-var invoiceList = new InvoiceList();
-var invoice = new Invoice(invoiceList, 5678, 1234);
+//init products, invoicelines and invoice
+Product p = new Product("Mythical Man-Month", 45);
+Product p2 = new Product("Ream of paper (500)", 5);
+Product p3 = new Product("Standart Fruit Laptop", 2000);
 
-invoiceList.Products.Add(product);
-invoiceList.Products.Add(product2);
-invoiceList.Products.Add(product3);
+List<InvoiceLine> invoiceLines = new List<InvoiceLine>()
+{
+    new InvoiceLine(p),
+    new InvoiceLine(p2, 4),
+    new InvoiceLine(p3),
+};
 
-invoice.InvoiceList= invoiceList;
+Invoice invoice = new Invoice(invoiceLines, 5678, 1234);
 
-var visitor = new ConsoleStringOperation();
-var visito2 = new XmlExportOperation();
+//init visitors
+var visitor = new ConsoleStringVisitor();
+var visitor2 = new XmlExportVisitor();
 
+//visiting the invoice types from ConsoleStringVisitor
 invoice.Accept(visitor);
-invoice.Accept(visito2);
+invoiceLines.ForEach(invoiceLine => invoiceLine.Accept(visitor));
+p.Accept(visitor);
+p2.Accept(visitor);
+p3.Accept(visitor);
+
+//visiting the invoice types from XmlExportVisitor
+invoice.Accept(visitor2);
+invoiceLines.ForEach(invoiceLine => invoiceLine.Accept(visitor2));
+p.Accept(visitor2);
+p2.Accept(visitor2);
+p3.Accept(visitor2);

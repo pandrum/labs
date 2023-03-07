@@ -2,6 +2,10 @@
 {
     internal interface IVisitor
     {
-        public void Visit(IElement element);
+        public void Visit(Invoice element);
+
+        public void Visit(InvoiceLine element);
+
+        public void Visit(Product element);
     }
 }
