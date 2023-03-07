@@ -2,19 +2,28 @@
 {
     internal class Invoice : IElement
     {
-        public InvoiceList InvoiceList { get; set; }
+        public List<InvoiceLine> InvoiceLine { get; set; }
         public int CustomerNumber { get; set; }
         public int InvoiceNumber { get; set; }
         public DateTime InvoiceDate { get; set; }
         public DateTime PaymentBy { get; set; }
 
-        public Invoice(InvoiceList invoiceList, int customerNumber, int invoiceNumber)
+        public double PreTax { get; set; }
+        public double Tax { get; set; }
+        public double TotalPrice { get; set; }
+
+        public Invoice(List<InvoiceLine> invoiceList, int customerNumber, int invoiceNumber)
         {
-            InvoiceList = invoiceList;
+            InvoiceLine = invoiceList;
             CustomerNumber = customerNumber;
             InvoiceNumber = invoiceNumber;
+
             InvoiceDate = DateTime.Now;
             PaymentBy = InvoiceDate.AddMonths(1);
+
+            InvoiceLine.ForEach(invoiceLine => PreTax += invoiceLine.Product.UnitPrice * invoiceLine.Quantity);
+            Tax = Math.Ceiling(PreTax * 0.1);
+            TotalPrice = Math.Ceiling(Tax + PreTax);
         }
 
         public void Accept(IVisitor visitor)
