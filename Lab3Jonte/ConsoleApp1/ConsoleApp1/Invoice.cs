@@ -21,6 +21,7 @@ namespace ConsoleApp1
 
         public double Total { get; set; }
 
+        
 
         public Invoice(List<InvoiceLine> invoiceLineList, int _invoiceNumber, int _customerNumber, DateTime _dueDate)
         {
@@ -40,7 +41,11 @@ namespace ConsoleApp1
         
         }
 
-        
+        public void Accept(IVisitor1 consolePrintOut)
+        {
+            consolePrintOut.VisitInvoice(this);
+
+        }
 
 
 

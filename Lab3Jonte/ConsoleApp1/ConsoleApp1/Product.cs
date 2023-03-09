@@ -17,9 +17,9 @@ namespace ConsoleApp1
 
 
 
-        public void Accept(IVisitor1 ConsolePrintOut) //hela dens jobb är att kalla på console Print klassen
+        public void Accept(IVisitor1 consolePrintOut) //hela dens jobb är att kalla på console Print klassen
         {
-            ConsolePrintOut.VisitProduct(this);
+            consolePrintOut.VisitProduct(this);
         }
 
 
